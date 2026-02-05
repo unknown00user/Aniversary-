@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Anniversary Mom Dad 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  :root {
+    --primary-color: #ff4d88;
+    --bg-gradient: linear-gradient(180deg, #ffe6f0 0%, #ffffff 100%);
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-gradient);
+    text-align: center;
+    overflow-x: hidden;
+    color: #444;
+  }
+
+  /* Floating Hearts Background */
+  .heart-bg {
+    position: fixed;
+    top: -10px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    z-index: -1;
+    user-select: none;
+  }
+
+  @keyframes fall {
+    to { transform: translateY(105vh); }
+  }
+
+  .screen {
+    display: none;
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .screen.active {
+    display: flex;
+    animation: fadeInScale 0.6s ease-out;
+  }
+
+  h1, h2 { color: var(--primary-color); margin-bottom: 10px; }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 10px auto;
+  }
+
+  .gold {
+    color: #b8860b;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+
+  button {
+    margin-top: 25px;
+    padding: 12px 35px;
+    border: none;
+    border-radius: 50px;
+    background: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 77, 136, 0.3);
+    transition: 0.3s;
+  }
+
+  button:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255, 77, 136, 0.5); }
+
+  .photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 400px;
+  }
+
+  .photos img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  #musicBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff80ab;
+    padding: 10px 15px;
+    z-index: 100;
+  }
+
+  @keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+</head>
+
+<body>
+
+<audio id="music" src="music.mp3" loop></audio>
+
+<div class="screen active" id="s1">
+  <h1>🎉 Surprise Mom & Dad 🎉</h1>
+  <p>Hamari taraf se ek chota sa gift...</p>
+  <button onclick="next()">Shuru karein? 💖</button>
+</div>
+
+<div class="screen" id="s2">
+  <h1>💑 Niraj & Renu 💑</h1>
+  <p>Everything started on</p>
+  <p class="gold">6 February 2006</p>
+  <p>Tab se lekar aaj tak...</p>
+  <p class="gold">19 Beautiful Years ✨</p>
+  <button onclick="next()">Next ➡️</button>
+</div>
+
+<div class="screen" id="s3">
+  <h2>💌 A Message for You 💌</h2>
+  <p>
+    Aap dono ki jodi duniya ki best jodi hai. <br>
+    Hume hamesha itna pyaar dene ke liye Thank You!<br><br>
+    Aapne humein sikhaya ki <b>Family</b> kya hoti hai. ❤️
+  </p>
+  <button onclick="next()">Memories 📸</button>
+</div>
+
+<div class="screen" id="s4">
+  <h2>📸 Sweet Memories 📸</h2>
+  <div class="photos">
+    <img src="photos/1.jpg" alt="Mom Dad">
+    <img src="photos/2.jpg" alt="Mom Dad">
+    <img src="photos/3.jpg" alt="Mom Dad">
+    <img src="photos/4.jpg" alt="Mom Dad">
+    <img src="photos/5.jpg" alt="Mom Dad">
+    <img src="photos/6.jpg" alt="Mom Dad">
+  </div>
+  <button onclick="next()">Final Surprise 💕</button>
+</div>
+
+<div class="screen" id="s5">
+  <h1>💖 Happy 19th Anniversary 💖</h1>
+  <p>May your love grow stronger every single day!</p>
+  <p>👨‍👩‍👧‍👦 Love you both! 👨‍👩‍👧‍👦</p>
+  <div style="font-size: 3rem;">✨🧿✨</div>
+</div>
+
+<button id="musicBtn" onclick="toggleMusic()">🎵 Music</button>
+
+<script>
+let current = 1;
+function next() {
+  document.getElementById("s" + current).classList.remove("active");
+  current++;
+  if(document.getElementById("s" + current)) {
+    document.getElementById("s" + current).classList.add("active");
+  }
+}
+
+function toggleMusic() {
+  let m = document.getElementById("music");
+  if (m.paused) { m.play(); } else { m.pause(); }
+}
+
+// Falling Hearts Animation
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart-bg");
+  heart.innerHTML = "❤️";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+  heart.style.opacity = Math.random();
+  document.body.appendChild(heart);
+  setTimeout(() => { heart.remove(); }, 5000);
+}
+setInterval(createHeart, 400);
+</script>
+
+</body>
+</html>
+
