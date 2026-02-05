@@ -1,264 +1,184 @@
-
-  <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-<meta charset="UTF-8">
-<title>Happy 19th Anniversary Mom & Dad 💖</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mere Pyare Mummy Papa aur Anshika</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap');
 
-<style>
-  :root {
-    --primary-pink: #ff4d88;
-    --gold: #d4af37;
-    --soft-white: #fff5f8;
-  }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: linear-gradient(135deg, #fce4ec 0%, #ffebee 100%);
-    text-align: center;
-    overflow-x: hidden;
-    color: #333;
-  }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff0f3;
+            overflow: hidden; /* Scrolling poori tarah band */
+            color: #4a4a4a;
+        }
 
-  /* Floating Hearts */
-  .heart-bg {
-    position: fixed;
-    top: -10px;
-    font-size: 24px;
-    animation: fall linear forwards;
-    z-index: -1;
-    user-select: none;
-  }
+        /* Background Animation */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
-  }
+        /* Page System */
+        .page {
+            height: 100vh;
+            width: 100vw;
+            display: none; /* Default hidden */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: fadeIn 0.8s ease-in-out;
+        }
 
-  /* Glassmorphism Card Style */
-  .screen {
-    display: none;
-    min-height: 100vh;
-    padding: 30px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+        .active { display: flex; } /* Sirf active page dikhega */
 
-  .card {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 40px 30px;
-    border-radius: 30px;
-    box-shadow: 0 15px 35px rgba(255, 77, 136, 0.2);
-    border: 2px solid white;
-    max-width: 600px;
-    width: 90%;
-    animation: slideUp 0.8s ease-out;
-    position: relative;
-  }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-  .screen.active { display: flex; }
+        /* Photo Styling - Badi aur Full Screen */
+        .photo-frame {
+            width: 90%;
+            max-width: 450px;
+            height: 65vh; /* Badi photo ke liye */
+            margin: 15px 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
+            border: 8px solid white;
+        }
 
-  /* Typography */
-  h1 { color: var(--primary-pink); font-size: 2.8rem; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-  h2 { color: var(--primary-pink); font-size: 2.2rem; }
-  
-  .message-text {
-    font-size: 1.4rem; /* Bada text */
-    line-height: 1.8;
-    margin: 20px 0;
-    font-weight: 500;
-  }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Photo stretch nahi hogi */
+        }
 
-  .date-highlight {
-    font-size: 2rem;
-    color: var(--gold);
-    font-weight: bold;
-    display: block;
-    margin: 15px 0;
-    background: #fff;
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-  }
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #d63384;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
 
-  /* Buttons */
-  .next-btn {
-    margin-top: 30px;
-    padding: 15px 45px;
-    border: none;
-    border-radius: 50px;
-    background: linear-gradient(45deg, #ff4d88, #ff80ab);
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 8px 20px rgba(255, 77, 136, 0.4);
-    transition: 0.3s;
-  }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            max-width: 85%;
+            margin-bottom: 15px;
+        }
 
-  .next-btn:hover { transform: scale(1.05); box-shadow: 0 10px 25px rgba(255, 77, 136, 0.6); }
+        /* Button Styling */
+        .btn-next {
+            padding: 18px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
+            transition: 0.3s;
+            z-index: 10;
+        }
 
-  /* Photo Grid */
-  .photo-frame {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-top: 25px;
-  }
-
-  .photo-frame img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border-radius: 15px;
-    border: 4px solid #fff;
-    transition: 0.3s;
-  }
-
-  .photo-frame img:hover { transform: rotate(3deg) scale(1.1); }
-
-  /* Stickers/Emojis Animation */
-  .sticker { font-size: 3rem; margin: 10px; display: inline-block; animation: bounce 2s infinite; }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-  }
-
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  #musicBtn {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background: white;
-    border: 2px solid var(--primary-pink);
-    border-radius: 50px;
-    padding: 12px 20px;
-    font-weight: bold;
-    color: var(--primary-pink);
-    cursor: pointer;
-    z-index: 1000;
-  }
-</style>
+        .btn-next:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.5);
+        }
+    </style>
 </head>
-
 <body>
 
-<audio id="music" src="music.mp3" loop></audio>
+    <audio id="bgMusic" loop>
+        <source src="APNA_SONG_LINK_DAALEIN.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="screen active" id="s1">
-  <div class="card">
-    <div class="sticker">🎁</div>
-    <h1>Surprise! Mom & Dad ❤️</h1>
-    <p class="message-text">Humari taraf se aapke liye ek bahut hi chota sa lekin pyara sa tohfa...</p>
-    <div class="sticker">✨🧿✨</div>
-    <br>
-    <button class="next-btn" onclick="next()">Shuru Karein? 💖</button>
-  </div>
-</div>
+    <div class="bg-hearts" id="heartBg"></div>
 
-<div class="screen" id="s2">
-  <div class="card">
-    <div class="sticker">💑</div>
-    <h1>Niraj ❤️ Renu</h1>
-    <p class="message-text">Ek khoobsurat safar jo shuru hua tha</p>
-    <span class="date-highlight">📅 6 February 2006</span>
-    <p class="message-text">Aaj is dosti aur pyaar ko pure ho gaye hain...</p>
-    <h2 style="color: #b8860b;">🌟 19 Saal 🌟</h2>
-    <button class="next-btn" onclick="next()">Aage Dekhein ✨</button>
-  </div>
-</div>
-
-<div class="screen" id="s3">
-  <div class="card">
-    <div class="sticker">💌</div>
-    <h2>Happy Anniversary Paigaam</h2>
-    <p class="message-text">
-      Mom aur Dad, aap dono sirf ek couple nahi, <br>
-      balki humare liye puri duniya ho. 🌍 <br><br>
-      Aapka saath humein sikhata hai ki <br>
-      <b>Sacha Pyaar</b> kya hota hai. <br>
-      Humesha aise hi haste muskurate rahein! 😊
-    </p>
-    <div class="sticker">🫂💐</div>
-    <br>
-    <button class="next-btn" onclick="next()">Yaadein 📸</button>
-  </div>
-</div>
-
-<div class="screen" id="s4">
-  <div class="card">
-    <div class="sticker">📸</div>
-    <h2>Humari Pyari Yaadein</h2>
-    <div class="photo-frame">
-      <img src="1.jpg"> <img src="2.jpg"> <img src="3.jpg">
-      <img src="4.jpg"> <img src="5.jpg"> <img src="6.jpg">
-      <img src="7.jpg"> <img src="8.jpg"> <img src="9.jpg">
+    <div class="page active" id="page1">
+        <h1 style="font-size: 3.5rem;">Pranam! ❤️</h1>
+        <p>Aap sab ke liye ek chota sa tohfa... <br> niche click karein!</p>
+        <button class="btn-next" onclick="nextPage(2, true)">Surprise Start Karein ✨</button>
     </div>
-    <button class="next-btn" onclick="next()">Ek Aakhri Baat 💕</button>
-  </div>
-</div>
 
-<div class="screen" id="s5">
-  <div class="card">
-    <div class="sticker">🎉</div>
-    <h1>Happy 19th Anniversary!</h1>
-    <p class="message-text">
-      Dua hai ki aap dono ki jodi <br>
-      humesha salamat rahe aur <br>
-      pyaar badhta hi jaye! 🥂
-    </p>
-    <div class="sticker">🎈🎂👑</div>
-    <p style="font-size: 1.5rem; color: #ff4d88; font-weight: bold;">Love You Both So Much! ❤️</p>
-  </div>
-</div>
+    <div class="page" id="page2">
+        <h1>Mummy & Papa</h1>
+        <div class="photo-frame">
+            <img src="MUMMY_PAPA_PHOTO_LINK.jpg" alt="Mummy Papa">
+        </div>
+        <p>Aap dono meri duniya ki sabse badi takat ho. Aapka ashirwad hamesha bana rahe.</p>
+        <button class="btn-next" onclick="nextPage(3)">Aage Chalein ➡️</button>
+    </div>
 
-<button id="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
+    <div class="page" id="page3">
+        <h1>Piyari Anshika</h1>
+        <div class="photo-frame">
+            <img src="ANSHIKA_PHOTO_LINK.jpg" alt="Anshika">
+        </div>
+        <p>Hamesha aise hi muskurati rehna aur khush rehna.</p>
+        <button class="btn-next" onclick="nextPage(4)">Ek Aur Baat... 💖</button>
+    </div>
 
-<script>
-let current = 1;
-function next() {
-  document.getElementById("s" + current).classList.remove("active");
-  current++;
-  if(document.getElementById("s" + current)) {
-    document.getElementById("s" + current).classList.add("active");
-  }
-}
+    <div class="page" id="page4">
+        <h1>Love You All!</h1>
+        <div class="photo-frame">
+            <img src="FAMILY_PHOTO_LINK.jpg" alt="Family">
+        </div>
+        <p>Aap sab ke bina sab kuch adhura hai. Thank you hamesha saath dene ke liye!</p>
+        <button class="btn-next" onclick="nextPage(1)">Shuru se dekhein 🔄</button>
+    </div>
 
-function toggleMusic() {
-  let m = document.getElementById("music");
-  let btn = document.getElementById("musicBtn");
-  if (m.paused) { 
-    m.play(); 
-    btn.innerHTML = "⏸️ Pause Music";
-  } else { 
-    m.pause(); 
-    btn.innerHTML = "🎵 Play Music";
-  }
-}
+    <script>
+        function nextPage(pageNumber, startMusic = false) {
+            // Saare pages ko hide karo
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active'));
 
-// Better Falling Hearts
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart-bg");
-  const emojis = ['❤️', '💖', '✨', '🌸', '💕'];
-  heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = Math.random() * 3 + 3 + "s";
-  heart.style.fontSize = Math.random() * 20 + 15 + "px";
-  document.body.appendChild(heart);
-  setTimeout(() => { heart.remove(); }, 6000);
-}
-setInterval(createHeart, 300);
-</script>
+            // Agle page ko dikhao
+            const currentNext = document.getElementById('page' + pageNumber);
+            currentNext.classList.add('active');
 
+            // Music bajane ka logic (Browser block nahi karega kyunki ye click par hai)
+            if (startMusic) {
+                const audio = document.getElementById('bgMusic');
+                audio.play().catch(e => console.log("Music play blocked:", e));
+            }
+        }
+
+        // Background Hearts Animation Logic
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh';
+            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+            heart.style.opacity = Math.random();
+            heart.style.color = '#ffb3c1';
+            heart.style.transition = '7s linear';
+            document.getElementById('heartBg').appendChild(heart);
+
+            setTimeout(() => { heart.style.top = '-10vh'; }, 100);
+            setTimeout(() => { heart.remove(); }, 7000);
+        }
+        setInterval(createHeart, 400);
+    </script>
 </body>
 </html>
