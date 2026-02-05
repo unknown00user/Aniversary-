@@ -1,184 +1,192 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mere Pyare Mummy Papa aur Anshika</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Lovely Family</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap');
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff0f3;
-            overflow: hidden; /* Scrolling poori tarah band */
-            color: #4a4a4a;
-        }
+*{margin:0;padding:0;box-sizing:border-box}
 
-        /* Background Animation */
-        .bg-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
+body{
+  font-family:'Poppins',sans-serif;
+  background:#fff0f3;
+  overflow:hidden;
+}
 
-        /* Page System */
-        .page {
-            height: 100vh;
-            width: 100vw;
-            display: none; /* Default hidden */
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            animation: fadeIn 0.8s ease-in-out;
-        }
+/* Pages */
+.page{
+  height:100vh;
+  width:100vw;
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  position:absolute;
+  top:0;
+  left:0;
+}
+.page.active{display:flex}
 
-        .active { display: flex; } /* Sirf active page dikhega */
+/* Text */
+h1{
+  font-family:'Dancing Script',cursive;
+  color:#d63384;
+  font-size:3rem;
+  margin-bottom:10px;
+}
+p{
+  font-size:1.15rem;
+  max-width:90%;
+  line-height:1.6;
+  margin-bottom:18px;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
+/* Photo */
+.photo-frame{
+  width:90%;
+  max-width:420px;
+  height:60vh;
+  border-radius:20px;
+  overflow:hidden;
+  border:8px solid white;
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  margin-bottom:18px;
+}
+.photo-frame img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-        /* Photo Styling - Badi aur Full Screen */
-        .photo-frame {
-            width: 90%;
-            max-width: 450px;
-            height: 65vh; /* Badi photo ke liye */
-            margin: 15px 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
-            border: 8px solid white;
-        }
+/* Buttons */
+.btn-next{
+  padding:14px 34px;
+  font-size:1.1rem;
+  border:none;
+  border-radius:50px;
+  background:#ff4d6d;
+  color:white;
+  margin:6px;
+}
 
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Photo stretch nahi hogi */
-        }
-
-        h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8rem;
-            color: #d63384;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-        }
-
-        p {
-            font-size: 1.2rem;
-            line-height: 1.5;
-            max-width: 85%;
-            margin-bottom: 15px;
-        }
-
-        /* Button Styling */
-        .btn-next {
-            padding: 18px 45px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff4d6d, #ff758f);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.4);
-            transition: 0.3s;
-            z-index: 10;
-        }
-
-        .btn-next:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(255, 77, 109, 0.5);
-        }
-    </style>
+/* Music Button */
+#musicBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:9999;
+  padding:14px 20px;
+  border:none;
+  border-radius:50px;
+  background:#d63384;
+  color:white;
+  font-size:16px;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+</style>
 </head>
+
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="APNA_SONG_LINK_DAALEIN.mp3" type="audio/mpeg">
-    </audio>
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn">🔊 Play Music</button>
 
-    <div class="bg-hearts" id="heartBg"></div>
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Hello ❤️</h1>
+  <p>
+  This is not just a website,  
+  it’s a small piece of my heart.
+  <br><br>
+  I made this especially for you,  
+  with love, respect, and gratitude.
+  </p>
+  <button class="btn-next" onclick="nextPage(2)">Start the Surprise ✨</button>
+</div>
 
-    <div class="page active" id="page1">
-        <h1 style="font-size: 3.5rem;">Pranam! ❤️</h1>
-        <p>Aap sab ke liye ek chota sa tohfa... <br> niche click karein!</p>
-        <button class="btn-next" onclick="nextPage(2, true)">Surprise Start Karein ✨</button>
-    </div>
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Mummy & Papa</h1>
+  <div class="photo-frame">
+    <img src="1.jpg">
+  </div>
+  <p>
+  You are my biggest strength in life.  
+  <br><br>
+  Everything I am today is because of your love,  
+  your sacrifices, and your endless support.
+  <br><br>
+  Thank you for always believing in me ❤️
+  </p>
+  <button class="btn-next" onclick="nextPage(1)">⬅ Back</button>
+  <button class="btn-next" onclick="nextPage(3)">Next ➡</button>
+</div>
 
-    <div class="page" id="page2">
-        <h1>Mummy & Papa</h1>
-        <div class="photo-frame">
-            <img src="MUMMY_PAPA_PHOTO_LINK.jpg" alt="Mummy Papa">
-        </div>
-        <p>Aap dono meri duniya ki sabse badi takat ho. Aapka ashirwad hamesha bana rahe.</p>
-        <button class="btn-next" onclick="nextPage(3)">Aage Chalein ➡️</button>
-    </div>
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>Dear Anshika</h1>
+  <div class="photo-frame">
+    <img src="2.jpg">
+  </div>
+  <p>
+  Your smile brings happiness to everyone around you.  
+  <br><br>
+  Never stop dreaming,  
+  never stop being the amazing person you are.
+  <br><br>
+  I’ll always be here for you ❤️
+  </p>
+  <button class="btn-next" onclick="nextPage(2)">⬅ Back</button>
+  <button class="btn-next" onclick="nextPage(4)">Next ➡</button>
+</div>
 
-    <div class="page" id="page3">
-        <h1>Piyari Anshika</h1>
-        <div class="photo-frame">
-            <img src="ANSHIKA_PHOTO_LINK.jpg" alt="Anshika">
-        </div>
-        <p>Hamesha aise hi muskurati rehna aur khush rehna.</p>
-        <button class="btn-next" onclick="nextPage(4)">Ek Aur Baat... 💖</button>
-    </div>
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <h1>My Family ❤️</h1>
+  <div class="photo-frame">
+    <img src="3.jpg">
+  </div>
+  <p>
+  Family is not just about living together,  
+  it’s about love, care, and standing by each other.
+  <br><br>
+  I am truly blessed to have you all in my life.
+  <br><br>
+  I love you forever ❤️
+  </p>
+  <button class="btn-next" onclick="nextPage(3)">⬅ Back</button>
+  <button class="btn-next" onclick="nextPage(1)">Restart 🔄</button>
+</div>
 
-    <div class="page" id="page4">
-        <h1>Love You All!</h1>
-        <div class="photo-frame">
-            <img src="FAMILY_PHOTO_LINK.jpg" alt="Family">
-        </div>
-        <p>Aap sab ke bina sab kuch adhura hai. Thank you hamesha saath dene ke liye!</p>
-        <button class="btn-next" onclick="nextPage(1)">Shuru se dekhein 🔄</button>
-    </div>
+<script>
+function nextPage(n){
+  document.querySelectorAll('.page')
+    .forEach(p=>p.classList.remove('active'));
+  document.getElementById('page'+n).classList.add('active');
+}
 
-    <script>
-        function nextPage(pageNumber, startMusic = false) {
-            // Saare pages ko hide karo
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(p => p.classList.remove('active'));
+/* MUSIC FORCE PLAY */
+const audio=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
 
-            // Agle page ko dikhao
-            const currentNext = document.getElementById('page' + pageNumber);
-            currentNext.classList.add('active');
+btn.onclick=()=>{
+  if(audio.paused){
+    audio.play();
+    btn.innerText="⏸ Pause Music";
+  }else{
+    audio.pause();
+    btn.innerText="🔊 Play Music";
+  }
+};
+</script>
 
-            // Music bajane ka logic (Browser block nahi karega kyunki ye click par hai)
-            if (startMusic) {
-                const audio = document.getElementById('bgMusic');
-                audio.play().catch(e => console.log("Music play blocked:", e));
-            }
-        }
-
-        // Background Hearts Animation Logic
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.style.position = 'fixed';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = '100vh';
-            heart.style.fontSize = Math.random() * 20 + 15 + 'px';
-            heart.style.opacity = Math.random();
-            heart.style.color = '#ffb3c1';
-            heart.style.transition = '7s linear';
-            document.getElementById('heartBg').appendChild(heart);
-
-            setTimeout(() => { heart.style.top = '-10vh'; }, 100);
-            setTimeout(() => { heart.remove(); }, 7000);
-        }
-        setInterval(createHeart, 400);
-    </script>
 </body>
 </html>
